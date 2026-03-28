@@ -34,3 +34,9 @@ async def generate_qr(request: Request):
     qr.make(fit=True)
 
     img = qr.make_image(fill_color="black", back_color="white")
+
+    buffer = io.BytesIO()
+    img.save(buffer, format="PNG")
+
+    qr_base64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
+    return {"qr_code": qr_base64}
