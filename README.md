@@ -18,6 +18,7 @@ A robust and efficient RESTful API built with FastAPI that converts text content
 - **Server**: Uvicorn 0.27.1 (ASGI server)
 - **QR Code Generation**: qrcode library
 - **Data Validation**: Pydantic 2.6.1
+- **Package Manager**: uv ( blazing fast Python package installer)
 - **Python Version**: Python 3.8+
 
 ## 📡 API Endpoints
@@ -78,7 +79,7 @@ fetch('http://localhost:8000/generate_qr', {
 ### Prerequisites
 
 - Python 3.8 or higher
-- pip package manager
+- uv package manager (recommended) or pip
 
 ### Step 1: Clone the Repository
 
@@ -87,7 +88,27 @@ git clone <your-repo-url>
 cd fastapi_text_to_qr
 ```
 
-### Step 2: Create Virtual Environment
+### Step 2: Install Dependencies
+
+#### Option A: Using uv (Recommended - Faster)
+
+```bash
+# Install uv if you haven't already (Windows)
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+# Install uv if you haven't already (Linux/Mac)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Create virtual environment and install dependencies
+uv venv
+source .venv/bin/activate  # Linux/Mac
+# or
+.venv\Scripts\activate     # Windows
+
+uv pip install -r requirements.txt
+```
+
+#### Option B: Using Traditional pip
 
 **Windows:**
 ```bash
@@ -100,8 +121,6 @@ venv\Scripts\activate
 python3 -m venv venv
 source venv/bin/activate
 ```
-
-### Step 3: Install Dependencies
 
 ```bash
 pip install -r requirements.txt
